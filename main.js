@@ -1,8 +1,6 @@
 const url = "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/bureaux-de-vote-2025/records?limit=100"
 const list = document.querySelector('.cards')
 
-
-
 const getdata = async() => {
     try {
         const result = await fetch(url)
@@ -14,6 +12,9 @@ const getdata = async() => {
     }
 }
 
+getdata().then(data =>{
+    displayCards(data.results)
+})
 
 function displayCards(bureaux) {
     bureaux.forEach(bureau => {
@@ -21,11 +22,6 @@ function displayCards(bureaux) {
         list.appendChild(card)
     })
 }
-
-
-getdata().then(data =>{
-    displayCards(data.results)
-})
 
 function createcard(data) {
     const article = document.createElement('article')
